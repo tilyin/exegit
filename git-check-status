@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+home_dir=$(pwd)
+
+cd $HOME/git
+dir_list=$(sudo find -H ./ -depth -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }')
+
+for dir_name in $dir_list
+do
+  cd $dir_name
+  pwd
+  echo "-----------------------------------------------------------"
+  git config --get remote.origin.url
+  echo
+  git status
+  cd $HOME/git
+  echo "___________________________________________________________"
+  echo "  "
+  echo "  "
+done
+
+cd $home_dir

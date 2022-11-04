@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+GIT_REPO=$1
+GIT_USER=$2
+
+if [ -z $GIT_USER ]; then
+  GIT_USER=tilyin
+fi
+
+if [ -z $GIT_REPO ]; then
+  GIT_REPO=$(pwd | awk -F/ '{print $NF}')
+fi
+
+echo "# sample-maven-project" >> README.md
+git init
+git add .
+git commit -m "first commit"
+git branch -M master
+git remote add origin git@github.com:$GIT_USER/$GIT_REPO.git
+git push -u origin master

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+# git remote set-url git@f.q.d.n:path/to/repository/REPOSITORY.git

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+GIT_USER=tilyin
+GIT_NAME=do-cluster
+GIT_URL=git@github.com:$GIT_USER/$GIT_NAME.git
+
+echo "# $GIT_URL" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin $GIT_URL
+git push -u origin master

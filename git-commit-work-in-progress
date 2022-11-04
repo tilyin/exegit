@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+current_dir=$(pwd)
+
+cd $HOME/git
+dir_list=$(sudo find -H ./ -depth -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }')
+
+for dir_name in $dir_list
+do
+  cd $dir_name
+  pwd
+  echo "-----------------------------------------------------------"
+  git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /untracked/ || $0 ~ /not staged/ ){ system("git add . && git commit -m \"work in progress as of $(date) \" && git push") } }'
+
+  if [[ $(echo $(git config --get remote.origin.url)) =~ "ssh://" ]]; then
+    ssh atom-58-inet -t "cd git/$(basename $(pwd)).git; if [ $(git config --get remote.origin.url) ]; then git push; fi"
+  fi
+
+  cd $HOME/git
+  echo "___________________________________________________________"
+  echo "  "
+  echo "  "
+done
+
+cd $current_dir
