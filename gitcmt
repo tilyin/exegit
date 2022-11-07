@@ -3,10 +3,11 @@
 echo "usage: $0 {{comments}}"
 comments=$@
 
-if [ $comments ]; then
-  echo "$comments"
-else
+if [[ -z "$comments" ]]; then
   comments="commit as of $(date)"
+  echo "auto set: $comments"
+else
+  echo "$comments"
 fi
 
 git add .
