@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+cd "/home/master/git"
+pwd
+echo
+dir_list=$(ls -lh | awk '!/^$/{ print $9 }')
+for dir_name in $dir_list
+do
+  cd $dir_name
+  pwd
+  echo '-----------------------------------------------------------'
+  echo -n "remote URL: "
+  git config --get remote.origin.url
+  echo
+  echo '-----------------------------------------------------------'
+  git push  
+  echo '___________________________________________________________'
+  echo "  "
+  echo "  "
+  cd "/home/master/git"
+done

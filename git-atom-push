@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+ssh -p 4961 master@95.165.133.121 "bash -s" < \
+current_dir=$(pwd) \
+cd "/home/master/git" \
+dir_list=$(ls -lah | awk '{ print $9 }') \
+echo $dir_list \
+for dir_name in $dir_list \
+do \
+  cd $dir_name \
+  pwd \
+  echo '-----------------------------------------------------------' \
+  git push \
+  cd "/home/master/git" \
+  echo '___________________________________________________________' \
+  echo "  " \
+  echo "  " \
+done \
+cd $current_dir \
