@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+echo "usage: $0 {{comments}}"
+comments=$@
+git add .
+git commit -m '$comments'
+git push
