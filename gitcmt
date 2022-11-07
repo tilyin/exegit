@@ -2,6 +2,13 @@
 #
 echo "usage: $0 {{comments}}"
 comments=$@
+
+if [ $comments ]; then
+  echo "$comments"
+else
+  comments="commit as of $(date)"
+fi
+
 git add .
-git commit -m '$comments'
+git commit -m "$comments"
 git push
