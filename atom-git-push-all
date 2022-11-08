@@ -11,7 +11,7 @@ do
   echo -n "remote URL: "
   git config --get remote.origin.url
   GIT_URL=$(git config --get remote.origin.url)
-  # Only if git repo
+  # Run only if git repo
   if [ -z $GIT_URL ]; then
     echo
     echo '-----------------------------------------------------------'
