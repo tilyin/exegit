@@ -2,7 +2,7 @@
 cd "/home/master/git"
 pwd
 echo
-dir_list=$(ls -lh | awk '!/^$/{ print $9 }')
+dir_list=$(ls -lh | awk '!/^$/{ print $9 }' | awk '/\.git/ { print }')
 for dir_name in $dir_list
 do
   cd $dir_name
@@ -10,11 +10,23 @@ do
   echo '-----------------------------------------------------------'
   echo -n "remote URL: "
   git config --get remote.origin.url
-  echo
-  echo '-----------------------------------------------------------'
-  git push  
-  echo '___________________________________________________________'
-  echo "  "
-  echo "  "
-  cd "/home/master/git"
+  GIT_URL=$(git config --get remote.origin.url)
+  # Only if git repo
+  if [ -z $GIT_URL ]; then
+    echo
+    echo '-----------------------------------------------------------'
+    echo "$dir_name is not git repository"
+    echo '___________________________________________________________'
+    echo "  "
+    echo "  "    
+    cd "/home/master/git"
+  else
+    echo
+    echo '-----------------------------------------------------------'
+    git push  
+    echo '___________________________________________________________'
+    echo "  "
+    echo "  "
+    cd "/home/master/git"
+  fi
 done
