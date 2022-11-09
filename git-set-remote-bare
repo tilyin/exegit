@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+cd $1
+
+GIT_DIR=$(basename $(pwd))
+echo $GIT_DIR
+
+git config --global --add safe.directory /home/master/git/$GIT_DIR
+git push --set-upstream origin master
+git config --get remote.origin.url

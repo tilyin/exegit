@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo
 echo "Original git URL is:"
-git remote show origin
-#git config --get remote.origin.url
+#git remote show origin
+git config --get remote.origin.url
 echo

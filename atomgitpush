@@ -1,1 +1,2 @@
-ssh atom-58-inet -t "cd git/$(basename $(pwd)).git; pwd; git push; cd ..; pwd;"
+#!/usr/bin/env bash
+ssh atom-58-inet -t "cd git/$(basename $(pwd)).git && pwd && git config --get remote.origin.url && git push"
