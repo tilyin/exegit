@@ -4,7 +4,7 @@ echo "usage: $0 {{comments}}"
 comments=$@
 
 if [[ -z "$comments" ]]; then
-  comments="commit as of $(date)"
+  comments="commit as of $(date -u --rfc-3339=s)"
   echo "auto set: $comments"
 else
   echo "$comments"
