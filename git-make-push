@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+SSH_ACCOUNT=$(git config --get remote.origin.url | awk -F:\/\/ '{print $2}' | awk -F: '{print $1}')
+
+SSH_PORT=$(git config --get remote.origin.url | awk -F:\/\/ '{print $2}' | awk -F: '{print $2}' | awk -F\/ '{print $1}')
+
+GIT_DIR=/home$(git config --get remote.origin.url | awk -F:\/\/ '{print $2}' | awk -F: '{print $2}' | awk -F\/home '{print $2}')
+
+
+echo "ssh -p $SSH_PORT $SSH_ACCOUNT -t \"cd $GIT_DIR; git push\""
+ssh -p $SSH_PORT $SSH_ACCOUNT -t "cd $GIT_DIR; git push"
