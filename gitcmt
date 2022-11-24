@@ -4,10 +4,10 @@ echo "usage: $0 {{comments}}"
 comments=$@
 
 if [[ -z "$comments" ]]; then
-  comments="commit as of $(date -u --rfc-3339=s)"
+  comments="commit as of $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
   echo "auto set: $comments"
 else
-  echo "$comments"
+  echo "$comments at $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
 fi
 
 git add .
