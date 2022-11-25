@@ -4,9 +4,11 @@ echo "usage: $0 {{comments}}"
 comments=$@
 
 if [[ -z "$comments" ]]; then
-  comments="commit as of $(date -u --rfc-3339=s)"
+  comments="commit as of $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
+  # Alternative date format $(date -u --rfc-3339=s)
   echo "auto set: $comments"
 else
+  comments="$comments at $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
   echo "$comments"
 fi
 
