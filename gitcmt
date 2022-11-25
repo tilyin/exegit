@@ -9,7 +9,7 @@ if [[ -z "$comments" ]]; then
   echo "auto comment set: $comments"
 else
   comments="$comments at $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
-  echo "$comments at $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
+  echo "$comments"
 fi
 
 git add .
