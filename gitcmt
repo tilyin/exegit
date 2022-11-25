@@ -4,12 +4,19 @@ echo "usage: $0 {{comments}}"
 comments=$@
 
 if [[ -z "$comments" ]]; then
+<<<<<<< HEAD
   comments="commit as of $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
   # Alternative date format $(date -u --rfc-3339=s)
   echo "auto set: $comments"
 else
   comments="$comments at $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
   echo "$comments"
+=======
+  comments="commit as of $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
+  echo "auto set: $comments"
+else
+  echo "$comments at $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
+>>>>>>> 56ae4274a4d39f2a15b0973009c2ade9250dec23
 fi
 
 git add .
