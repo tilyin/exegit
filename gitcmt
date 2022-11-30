@@ -15,3 +15,7 @@ fi
 git add .
 git commit -m "$comments"
 git push
+
+if [[ $(git config --get remote.origin.url) == *"95.165.133.121"* ]]; then
+  ssh atom-58-inet "cd git/$(basename $(pwd)).git; pwd; git push;"
+fi
