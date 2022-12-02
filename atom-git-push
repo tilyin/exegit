@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ssh atom-58-inet "cd git/$(basename $(pwd)).git; echo \"master@atom:> /home/master/git/$(basename $(pwd)).git\"; git config --get remote.origin.url; git push"
+ssh atom-58-inet "cd git/$(basename $(pwd)).git; echo -e \"master@atom:/home/master/git/$(basename $(pwd)).git$ git push\n   remote:\n      $(git config --get remote.origin.url)\"; git push"
