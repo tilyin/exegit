@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-ssh atom-58-inet "cd git/$(basename $(pwd)).git; echo \"master@atom:> /home/master/git/$(basename $(pwd)).git\"; git push"

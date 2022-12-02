@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+REMOTE_ORIGIN_URL=$(git config --get remote.origin.url)
+if [[ $REMOTE_ORIGIN_URL == *"ssh"* ]]; then
+  SSH_ACCOUNT=$(git config --get remote.origin.url | awk -F:\/\/ '{print $2}' | awk -F: '{print $1}')
+  SSH_PORT=$(git config --get remote.origin.url | awk -F:\/\/ '{print $2}' | awk -F: '{print $2}' | awk -F\/ '{print $1}')
+  GIT_DIR=/home$(git config --get remote.origin.url | awk -F:\/\/ '{print $2}' | awk -F: '{print $2}' | awk -F\/home '{print $2}')
+
+  echo "ssh -p $SSH_PORT $SSH_ACCOUNT -t \"cd $GIT_DIR; git push\""
+  ssh -p $SSH_PORT $SSH_ACCOUNT -t "cd $GIT_DIR; git push"
+else
+  echo "remote origin can not be accessed via ssh"
+fi
