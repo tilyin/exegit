@@ -3,7 +3,7 @@ echo "usage: $0 {{comments}}"
 comments=$@
 
 if [[ -z "$comments" ]]; then
-  comments="commit as of $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
+  comments="work in progress as of $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
   # Alternative date format $(date -u --rfc-3339=s)
   echo "auto comment set: $comments"
 else
