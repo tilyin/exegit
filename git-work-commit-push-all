@@ -4,8 +4,6 @@ current_dir=$(pwd)
 cd $HOME/git
 dir_list=$(sudo find -H ./ -depth -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }')
 
-dir_list="$dir_list $HOME/Documents"
-
 for dir_name in $dir_list
 do
   cd $dir_name
@@ -22,5 +20,20 @@ do
   echo "  "
   echo "  "
 done
+
+cd $HOME/Documents
+pwd
+echo "-----------------------------------------------------------"
+git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /untracked/ || $0 ~ /not staged/ ){ system("git add . && git commit -m \"work in progress as of $(date -u --rfc-3339=s) \" && git push") } }'
+
+if [[ $(echo $(git config --get remote.origin.url)) =~ "ssh://" ]]; then
+  ssh atom-58-inet "cd /home/master/Documents; if [ $(git config --get remote.origin.url) ]; then git push; fi"
+fi
+
+cd $HOME/git
+echo "___________________________________________________________"
+echo "  "
+echo "  "
+
 
 cd $current_dir
