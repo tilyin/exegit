@@ -12,7 +12,7 @@ do
   git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /untracked/ || $0 ~ /not staged/ ){ system("git add . && git commit -m \"work in progress as of $(date -u --rfc-3339=s) \" && git push") } }'
 
   if [[ $(echo $(git config --get remote.origin.url)) =~ "ssh://" ]]; then
-    ssh -p 4961 master@95.165.133.121 "cd git/$(basename $(pwd)).git; if [ $(git config --get remote.origin.url) ]; then git push; ssh -p 4961 tim@95.165.133.121 \"cd git/$(basename $(pwd)).git; echo;pwd;echo; git push \"fi"
+    ssh -p 4961 master@95.165.133.121 "cd git/$(basename $(pwd)).git; if [ $(git config --get remote.origin.url) ]; then git push; ssh -p 4961 tim@95.165.133.121 \"cd git/$(basename $(pwd)).git; echo;pwd;echo; git push \"; fi"
   fi
 
   cd $HOME/git
@@ -27,7 +27,7 @@ echo "-----------------------------------------------------------"
 git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /untracked/ || $0 ~ /not staged/ ){ system("git add . && git commit -m \"work in progress as of $(date -u --rfc-3339=s) \" && git push") } }'
 
 if [[ $(echo $(git config --get remote.origin.url)) =~ "ssh://" ]]; then
-  ssh -p 4961 master@95.165.133.121 "cd /home/master/git/Documents.git; if [ $(git config --get remote.origin.url) ]; then git push; echo; ssh -p 4961 tim@10.1.1.250 \"cd git/Documents.git; echo; pwd; echo; git push \" fi"
+  ssh -p 4961 master@95.165.133.121 "cd /home/master/git/Documents.git; if [ $(git config --get remote.origin.url) ]; then git push; echo; ssh -p 4961 tim@10.1.1.250 \"cd git/Documents.git; echo; pwd; echo; git push \"; fi"
 fi
 
 cd $HOME/git
