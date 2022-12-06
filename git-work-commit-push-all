@@ -8,12 +8,13 @@ dir_list="$dir_list $HOME/Documents"
 for dir_name in $dir_list
 do
   cd $dir_name
+  echo
   pwd
   echo "-----------------------------------------------------------"
   git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /untracked/ || $0 ~ /not staged/ ){ system("git add . && git commit -m \"work in progress as of $(date -u --rfc-3339=s) \" && git push") } }'
 
   if [[ $(echo $(git config --get remote.origin.url)) =~ "ssh://" ]]; then
-    ssh -p 4961 master@95.165.133.121 "cd git/$(basename $(pwd)).git; echo; pwd; git push; echo; ssh -p 4961 tim@10.1.1.250 \"cd git/$(basename $(pwd)).git; pwd; git push; echo; exit\"; echo -e \"\ncomplete\";"
+    ssh -p 4961 master@95.165.133.121 "cd git/$(basename $(pwd)).git; echo; pwd; git push; ssh -p 4961 tim@10.1.1.250 \"cd git/$(basename $(pwd)).git; echo; pwd; git push;\"; echo -e \"\ncomplete\";"
   fi
 
   cd $HOME/git
