@@ -3,7 +3,7 @@ current_dir=$(pwd)
 
 cd $HOME/git
 dir_list=$(sudo find -H ./ -depth -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }')
-dir_list=echo "$dir_list $HOME/Documents"
+dir_list="$dir_list $HOME/Documents"
 
 for dir_name in $dir_list
 do
