@@ -16,5 +16,5 @@ git commit -m "$comments"
 git push
 
 if [[ $(git config --get remote.origin.url) == *"95.165.133.121"* ]]; then
-  ssh atom-58-inet "cd git/$(basename $(pwd)).git; echo && echo \"master@atom:/home/master/git/$(basename $(pwd)).git$ git push\"; git push;"
+  ssh atom-58-inet "cd git/$(basename $(pwd)).git; echo && echo \"master@dsm:/var/services/home/tim/git/$(basename $(pwd)).git$ git push\"; git push;"
 fi
