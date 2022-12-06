@@ -21,5 +21,5 @@ echo
 git push
 
 if [[ $(git config --get remote.origin.url) == *"95.165.133.121"* ]]; then
-  ssh -p 4961 master@95.165.133.121 "cd git/$(basename $(pwd)).git; echo && echo \"master@95.165.133.121:4961/home/master/git/$(basename $(pwd)).git$ git push\"; git push; ssh -p 4961 tim@10.1.1.250 \"cd git/$(basename $(pwd)).git; echo; git push; exit; \"; "
+  ssh -p 4961 master@95.165.133.121 "cd git/$(basename $(pwd)).git; echo && echo \"master@95.165.133.121:4961/home/master/git/$(basename $(pwd)).git$ git push\"; git push; ssh -p 4961 tim@10.1.1.250 \"cd git/$(basename $(pwd)).git; echo; git push\""
 fi
