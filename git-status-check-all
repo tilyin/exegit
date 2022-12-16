@@ -4,6 +4,12 @@ home_dir=$(pwd)
 cd $HOME/git
 dir_list=$(sudo find -H ./ -depth -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }')
 
+if [[ -d $HOME/Documents ]];then
+  dir_list="$dir_list $HOME/Documents"
+fi
+
+echo && echo
+
 for dir_name in $dir_list
 do
   cd $dir_name

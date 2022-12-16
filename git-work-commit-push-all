@@ -9,8 +9,8 @@ for dir_name in $dir_list
 do
   cd $dir_name
   echo
-  echo "$(whoami)@$(hostname):$(pwd)"
-  echo "-----------------------------------------------------------"
+  echo -e "\033[01;34m$(whoami)@$(hostname):$(pwd)\033[00m"
+  echo -e "\033[00;32m---------------------------------------------------------------------------------\033[00m"
   git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /untracked/ || $0 ~ /not staged/ ){ system("git add . && git commit -m \"work in progress as of $(date -u --rfc-3339=s) \" && git push") } }'
 
   if [[ $(echo $(git config --get remote.origin.url)) =~ "ssh://" ]]; then
@@ -18,7 +18,7 @@ do
   fi
 
   cd $HOME/git
-  echo "___________________________________________________________"
+  echo -e "\033[00;32m_________________________________________________________________________________\033[00m"
   echo "  "
   echo "  "
 done
