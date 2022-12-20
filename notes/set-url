@@ -1,0 +1,17 @@
+Setting a separate Git push URL
+------------------------------------------------------------------------------------------------
+
+Step 1: List your existing remotes in order to understand your current local setup.
+$ git remote -v
+# origin  git@github.com:PROJECT/REPOSITORY.git (fetch)
+# origin  git@github.com:PROJECT/REPOSITORY.git (push)
+
+Step 2: Use git remote set-url --push to modify the push URL only of your current repository. 
+Using git remote set-url will modify both fetch and pull URL’s.
+$ git remote set-url --push origin git@github.com:USERNAME/REPOSITORY
+
+
+Step 3: Verify that the remote URL has been changed successfully.
+$ git remote -v
+# origin  git@github.com:PROJECT/REPOSITORY.git (fetch)
+# origin  git@github.com:USERNAME/REPOSITORY (push)
