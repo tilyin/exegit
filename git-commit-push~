@@ -16,7 +16,7 @@ fi
 
 CURRENT=$(pwd)
 echo ${CURRENT}
-while [[ ! $(ls -lah | awk '/\.git/ { print $9 }') ]]
+while [[ ! $(ll | awk '/\.git/ { print $9 }') ]]
 do
   cd ..
 done
