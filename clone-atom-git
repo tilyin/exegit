@@ -11,5 +11,5 @@ if [[ -z $NAME ]];then
   NAME=$1
 fi
 
-echo "git clone ssh://master@95.165.133.121:4961/home/master/git/${NAME}"
-git clone ssh://master@95.165.133.121:4961/home/master/git/${NAME}
+echo "git clone ssh://git@95.165.133.121:4961/home/git/repo/${NAME}"
+git clone ssh://git@95.165.133.121:4961/home/git/repo/${NAME}
