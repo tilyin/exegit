@@ -19,7 +19,7 @@ do
   echo $file
   echo
   echo -e "sed -i 's/master@95.165.133.121:4961/home/master/git / git@95.165.133.121:4961/home/git/repo /g' $file/.git/config"
-  sed -i 's/master@95.165.133.121:4961\/home\/master\/git/git@95.165.133.121:4961\/home\/git\/repo/g' $file/.git/config
+  sed 's/master@95.165.133.121:4961\/home\/master\/git/git@95.165.133.121:4961\/home\/git\/repo/g' $file/.git/config
 #  sed -i 's/master@95.165.133.121:4961\/home\/master\/git/git@95.165.133.121:4961\/home\/git\/repo/g' $file/.git/config
 done
 
