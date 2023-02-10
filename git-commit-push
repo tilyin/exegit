@@ -36,7 +36,7 @@ else
   GIT_PREPATH=$(git config --get remote.origin.url | awk -F: '{ print $3 }')
   GIT_PATH=${GIT_PREPATH:${#GIT_PORT}:$((${#GIT_PREPATH}-1))}
 
-  ssh -p ${GIT_PORT} ${GIT_USER}@${GIT_HOST} "cd ${GIT_PATH}; echo && echo \"${GIT_USER}@${GIT_HOST}:${GIT_PORT}${GIT_PATH}$ git push\"; git push;"
+  ssh -p ${GIT_PORT} ${GIT_USER}@${GIT_HOST} "cd ${GIT_PATH}; echo; pwd; echo \"${GIT_USER}@${GIT_HOST}:${GIT_PORT}${GIT_PATH}$ git push\"; git push;"
 fi
 
 cd ${CURRENT}
