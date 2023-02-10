@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+CURRENT=$(pwd)
+
+cd ${HOME}/git
+git_list=".local_arch"
+
+for git in $(ls -d */);
+do
+  git_list="$git_list $git"
+done
+
+ git_list="$git_list ${HOME}/Documents"
+
+for git in $git_list;
+do
+  cd $git
+  echo
+  pwd
+  sed 's/git@localhost:4961\/home\/git\/repo/tim@95.165.133.121:4965\/var\/services\/homes\/tim\/git/g' .git/config
+  cd ..
+  echo
+done
+
+cd ${CURRENT}
