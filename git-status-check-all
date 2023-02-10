@@ -23,7 +23,7 @@ do
   git config --get remote.origin.url
   echo
   git status
-  cd $HOME/git
+  cd ..
   echo -e "\033[00;32m________________________________________________________________________________\033[00m"
   echo "  "
   echo "  "
