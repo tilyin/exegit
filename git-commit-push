@@ -28,7 +28,7 @@ echo
 git push -u origin master
 
 if [[ $(git config --get remote.origin.url) == *"95.165.133.121"* ]]; then
-  ssh -p 4961 git@95.165.133.121 "cd repo/$(basename $(pwd)).git; echo && echo \"git@95.165.133.121:4961/home/git/repo/$(basename $(pwd)).git$ git push\"; git push; ssh -p 4965 tim@95.165.133.121 \"cd git/$(basename $(pwd)).git; echo; echo \"tim@dsm:$(basename $(pwd)).git$ git push\"; git push; exit; \"; "
+  ssh -p 4961 git@95.165.133.121 "cd repo/$(basename $(pwd)).git; echo && echo \"git@95.165.133.121:4961/home/git/repo/$(basename $(pwd)).git$ git push\"; git push; ssh -p 4965 tim@10.1.1.250 \"cd git/$(basename $(pwd)).git; echo; echo \"tim@dsm:$(basename $(pwd)).git$ git push\"; git push; exit; \"; "
 elif [[ $(git config --get remote.origin.url) == *"localhost"* ]]; then
   ssh -p 4961 git@localhost "cd repo/$(basename $(pwd)).git; echo && echo \"git@localhost:4961/home/git/repo/$(basename $(pwd)).git$ git push\"; git push; ssh -p 4965 tim@10.1.1.250 \"cd git/$(basename $(pwd)).git; echo; echo \"tim@dsm:$(basename $(pwd)).git$ git push\"; git push; exit; \"; "
 fi
