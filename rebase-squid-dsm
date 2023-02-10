@@ -16,7 +16,8 @@ do
   cd $git
   echo
   pwd
-  sed 's/git@localhost:4961\/home\/git\/repo/tim@95.165.133.121:4965\/var\/services\/homes\/tim\/git/g' .git/config
+  #sed 's/git@localhost:4961\/home\/git\/repo/tim@95.165.133.121:4965\/var\/services\/homes\/tim\/git/g' .git/config
+  sed 's/git@localhost:4961\/home\/git\/repo/tim@10.1.1.250:4965\/var\/services\/homes\/tim\/git/g' .git/config
   cd ..
   echo
 done
