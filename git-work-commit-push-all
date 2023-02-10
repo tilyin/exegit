@@ -11,7 +11,7 @@ do
   echo
   echo -e "\033[01;34m$(whoami)@$(hostname):$(pwd)\033[00m"
   echo -e "\033[00;32m---------------------------------------------------------------------------------\033[00m"
-  git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /Untracked/ || $0 ~ /Changes to be committed/ || $0 ~ /not staged for commit/){ system("git add . && git commit -m \"work in progress as of $(date -u +%Y-%m-%d_at_%H:%M:%S_%Z) \" && git push") } }'
+  git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /Untracked/ || $0 ~ /Changes to be committed/ || $0 ~ /not staged for commit/){ system("git status && git add . && git commit -m \"work in progress as of $(date -u +%Y-%m-%d_at_%H:%M:%S_%Z) \" && git push") } }'
 
   if [[ $(echo $(git config --get remote.origin.url)) =~ "ssh://" ]]; then
     GIT_USER=$(git config --get remote.origin.url | awk -F/ '{ print $3 }' | awk -F@ ' { print $1 }')
@@ -21,7 +21,6 @@ do
     GIT_PATH=${GIT_PREPATH:${#GIT_PORT}:$((${#GIT_PREPATH}-1))}
 
     ssh -p ${GIT_PORT} ${GIT_USER}@${GIT_HOST} "cd ${GIT_PATH}; echo; pwd; echo \"${GIT_USER}@${GIT_HOST}:${GIT_PORT}${GIT_PATH}$ git push\"; git push;"
-#    ssh -p 4961 git@95.165.133.121 "cd repo/$(basename $(pwd)).git; echo; pwd; git push; ssh -p 4965 tim@10.1.1.250 \"cd /var/services/homes/tim/git/$(basename $(pwd)).git; echo; pwd; git push;\";"
   fi
 
   cd $HOME/git
