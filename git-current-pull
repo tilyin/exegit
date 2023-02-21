@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+CURRENT=$(pwd)
+
+while [[ ! -f $(pwd)/.git/config && $(pwd) != '/' ]]
+do
+  cd ..
+done
+
+pwd
+
+if [[ -f $(pwd)/.git/config ]]; then
+  git status
+  git pull
+fi
+
+cd ${CURRENT}
