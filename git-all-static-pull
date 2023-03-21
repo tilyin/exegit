@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-UPG_LIST=("vpn-gate" "vpn-madrid" "vpn-sfo3" "lb-lax" "sqlap-devOps" "atom-devOps")
+UPG_LIST=("vpn-gate" "vpn-madrid" "vpn-sfo3" "lb-lax" "squid-devOps" "atom-devOps")
 
 for ITEM in "${UPG_LIST[@]}"; do ssh $ITEM -t "echo _______________________________________________________________________________; echo _______________________________________________________________________________; echo; hostname; /home/master/git/exegit/git-pull-all && /home/master/git/ssh/ssh-update.sh; echo; echo"; done;
