@@ -22,4 +22,6 @@ do
   echo "  "
 done
 
+. ~/git/ssh/ssh-update.sh
+
 cd $current_dir
