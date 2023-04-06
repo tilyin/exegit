@@ -2,7 +2,10 @@
 CURRENT=$(pwd)
 
 cd ${HOME}/git
-git_list=".local_arch"
+
+if [[ -d ~/git/.local_arch ]]; then
+  git_list=".local_arch"
+fi
 
 for git in $(ls -d */);
 do
