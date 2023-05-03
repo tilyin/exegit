@@ -22,8 +22,6 @@ do
   echo "  "
 done
 
-if [ -f ~/git/ssh/ssh-update.sh ]; then
-  . ~/git/ssh/ssh-update.sh
-fi
+. ~/git/ssh/ssh-update.sh
 
 cd $current_dir
