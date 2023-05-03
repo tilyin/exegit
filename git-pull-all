@@ -26,4 +26,5 @@ if [ -f ~/git/ssh/ssh-update.sh ]; then
   . ~/git/ssh/ssh-update.sh
 fi
 
+
 cd $current_dir
