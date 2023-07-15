@@ -16,15 +16,16 @@ do
   echo -e "\033[01;34m$(pwd)\033[00m"
   echo -e "\033[00;32m-------------------------------------------------------------------------------\033[00m"
   git pull
+  
+  if [[ "$dir_name" == "ssh" ]] && [ -f ~/git/ssh/ssh-update.sh ]; then
+    . ~/git/ssh/ssh-update.sh
+  fi
+  
   cd $HOME/git
   echo -e "\033[00;32m_______________________________________________________________________________\033[00m"
   echo "  "
   echo "  "
 done
 
-if [ -f ~/git/ssh/ssh-update.sh ]; then
-  . ~/git/ssh/ssh-update.sh
-fi
-
-
 cd $current_dir
+
