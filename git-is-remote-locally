@@ -6,8 +6,14 @@ NC='\033[0m'
 CURRENT=$(pwd)
 cd $HOME/git
 
+if [[ $(curl -s https://ipinfo.io/ip) == '95.165.133.121' ]]; then
+  REPO_IP='10.1.1.250'
+else
+  REPO_IP='95.165.133.121'
+fi
+
 remote=""
-remote=$(ssh dsm-inet 'cd git; for dir in $(ls | grep .git); do echo $dir; done;')
+remote=$(ssh -p 4965 tim@${REPO_IP} 'cd git; for dir in $(ls | grep .git); do echo $dir; done;')
 
 local=""
 
