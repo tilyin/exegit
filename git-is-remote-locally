@@ -7,7 +7,7 @@ CURRENT=$(pwd)
 cd $HOME/git
 
 remote=""
-remote=$(ssh atom-58-inet 'cd git; for dir in $(ls | grep .git); do echo $dir; done;')
+remote=$(ssh dsm-inet 'cd git; for dir in $(ls | grep .git); do echo $dir; done;')
 
 local=""
 
