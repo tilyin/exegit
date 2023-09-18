@@ -12,10 +12,13 @@ do
   echo -e "\033[01;34m$(whoami)@$(hostname):$(pwd)\033[00m"
   echo -e "\033[00;32m---------------------------------------------------------------------------------\033[00m"
 
-  if [[ $(curl -s https://ipinfo.io/ip) == '95.165.133.121' ]]; then
-    [[ -n $(sed -n '/95.165.133.121/p' .git/config) ]] && sed -i 's/95.165.133.121/10.1.1.250/g' .git/config
+  if [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.1.2' ]]; then
+    [[ -n $(sed -n '/95.165.133.121/p' .git/config) ]] && sed -i 's/95.165.133.121/10.1.2.250/g' .git/config
+  elif [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.1.1' ]]; then
+    echo "Git server is unreachable from this network -- got to devOps"
+    exit 1
   else
-    [[ -n $(sed -n '/10.1.1.250/p' .git/config) ]] && sed -i 's/10.1.1.250/95.165.133.121/g' .git/config
+    [[ -n $(sed -n '/10.1.2.250/p' .git/config) ]] && sed -i 's/10.1.2.250/95.165.133.121/g' .git/config
   fi
     
   git status | awk '{ if( $0 ~ /^\// && $0 !~ /origin\/master/) { DIR=$0; print "DIR: " DIR; }; if( $0 ~ /Untracked/ || $0 ~ /Changes to be committed/ || $0 ~ /not staged for commit/){ system("git status && git add . && git commit -m \"work in progress as of $(date -u +%Y-%m-%d_at_%H:%M:%S_%Z) \" && echo && git push") } }'

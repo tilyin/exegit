@@ -6,10 +6,13 @@ NC='\033[0m'
 CURRENT=$(pwd)
 cd $HOME/git
 
-if [[ $(curl -s https://ipinfo.io/ip) == '95.165.133.121' ]]; then
-  REPO_IP='10.1.1.250'
+if [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.1.2' ]]; then
+  [[ -n $(sed -n '/95.165.133.121/p' .git/config) ]] && sed -i 's/95.165.133.121/10.1.2.250/g' .git/config && REPO_IP='95.165.133.121'
+elif [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.1.1' ]]; then
+  echo "Git server is unreachable from this network -- got to devOps"
+  exit 1
 else
-  REPO_IP='95.165.133.121'
+  [[ -n $(sed -n '/10.1.2.250/p' .git/config) ]] && sed -i 's/10.1.2.250/95.165.133.121/g' .git/config && REPO_IP='10.1.1.250'
 fi
 
 remote=""
