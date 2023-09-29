@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 echo "usage: $0 {{comments}}"
 echo
 comments=$@
