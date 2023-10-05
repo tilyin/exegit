@@ -9,7 +9,7 @@ if [[ -d $HOME/Documents ]];then
 fi
 
 echo && echo
-IS_DEVOPS_PING="$(ping -c3 10.1.2.250 | awk '/0% packet loss/ { print }')"
+IS_DEVOPS_PING="$(ping -c3 10.58.0.250 | awk '/0% packet loss/ { print }')"
 
 for dir_name in $dir_list; do
   cd $dir_name
@@ -19,12 +19,12 @@ for dir_name in $dir_list; do
   echo "Git reporitory set on: $(sed -E -n '/\surl = /p' .git/config)"
   
   if [[ -n "${IS_DEVOPS_PING}" ]]; then
-    [[ -n $(sed -n '/95.165.133.121/p' .git/config) ]] && sed -i 's/95.165.133.121/10.1.2.250/g' .git/config && echo "Git reporitory now on: $(sed -E -n '/\surl = /p' .git/config)"
-  elif [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.1.1' ]]; then
+    [[ -n $(sed -n '/95.165.133.121/p' .git/config) ]] && sed -i 's/95.165.133.121/10.58.0.250/g' .git/config && echo "Git reporitory now on: $(sed -E -n '/\surl = /p' .git/config)"
+  elif [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.59.0' ]]; then
     echo "Git server is unreachable from this network -- connect to devOps"
     exit 1
   else
-    [[ -n $(sed -n '/10.1.2.250/p' .git/config) ]] && sed -i 's/10.1.2.250/95.165.133.121/g' .git/config && echo "Git reporitory now on: $(sed -E -n '/\surl = /p' .git/config)"
+    [[ -n $(sed -n '/10.58.0.250/p' .git/config) ]] && sed -i 's/10.58.0.250/95.165.133.121/g' .git/config && echo "Git reporitory now on: $(sed -E -n '/\surl = /p' .git/config)"
   fi
 
   git pull
