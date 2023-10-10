@@ -5,13 +5,13 @@ echo
 comments=$@
 
 if [[ -z "$comments" ]]; then
-  comments="work in progress as of $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
+  comments="$(hostname): work in progress as of $(date -u +%Y-%m-%dT%H:%M:%S%Z)"
   # Alternative date format $(date -u --rfc-3339=s)
   echo "auto comment set: $comments"
   echo
 else
   comments="$comments at $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
-  echo "$comments"
+  echo "$(hostname): $comments"
   echo
 fi
 
