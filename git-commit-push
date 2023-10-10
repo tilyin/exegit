@@ -10,8 +10,8 @@ if [[ -z "$comments" ]]; then
   echo "auto comment set: $comments"
   echo
 else
-  comments="$comments at $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
-  echo "$(hostname): $comments"
+  comments="$(hostname): $comments at $(date -u +%Y-%m-%d_T_%H:%M:%S_%Z)"
+  echo "$comments"
   echo
 fi
 
