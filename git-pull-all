@@ -10,7 +10,7 @@ if [[ -d $HOME/Documents ]];then
 fi
 
 if [ -n $(which tldr) ]; then
-  TLDR_DIR=$(dirname $(grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }'))
+  TLDR_DIR=$(dirname $(sudo grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }'))
   TLDR_DIR="${TLDR_DIR%'/.git'}"
   dir_list="${dir_list} ${TLDR_DIR}"
 fi
