@@ -3,7 +3,7 @@ current_dir=$(pwd)
 
 cd $HOME/git
 echo "Preparing repository list..."
-dir_list=$(sudo find -H ./ -depth -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }' | sort)
+dir_list=$(sudo find -H ./ -depth -type d -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }' | sort)
 
 if [[ -d $HOME/Documents ]];then
   dir_list="$dir_list $HOME/Documents"
