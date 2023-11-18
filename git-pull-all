@@ -9,11 +9,17 @@ if [[ -d $HOME/Documents ]];then
   dir_list="$dir_list $HOME/Documents"
 fi
 
-if [ -n $(which tldr) ]; then
-  echo "."
-  TLDR_DIR=$(dirname $(sudo grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }'))
-  TLDR_DIR="${TLDR_DIR%'/.git'}"
-  dir_list="${dir_list} ${TLDR_DIR}"
+if [ -n $(which tldr) ]; then  
+  TLDR_CONFIG=$(sudo grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }' | awk '!/git\// { print }')
+  if [ -n "${TLDR_CONFIG}" ]; then
+    TLDR_DIR=$(dirname "${TLDR_CONFIG}")
+    TLDR_DIR="${TLDR_DIR%'/.git'}"
+    dir_list="${dir_list} ${TLDR_DIR}"
+    unset -v TLDR_CONFIG TLDR_DIR
+  else
+    echo "...update tldr snap"
+    tldr -u
+  fi
 fi
 
 echo && echo
