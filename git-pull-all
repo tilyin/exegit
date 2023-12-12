@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 current_dir=$(pwd)
 
-if [ -n $(which tldr) ]; then  
+if [ -n $(which tldr) ]; then
+  echo "Update tldr..."
   TLDR_CONFIG=$(sudo grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }' | awk '!/git\// { print }')
   if [ -n "${TLDR_CONFIG}" ]; then
+    echo "...tldr git added to list"
     TLDR_DIR=$(dirname "${TLDR_CONFIG}")
     TLDR_DIR="${TLDR_DIR%'/.git'}"
     dir_list="${dir_list} ${TLDR_DIR}"
     unset -v TLDR_CONFIG TLDR_DIR
   else
-    echo "...update tldr snap"
+    echo "...tldr snap"
     TLDR_GIT_PATH=$(grep -rnEI 'tldr-pages\/tldr.git' ${HOME}/ | grep -E '\.git\/config' | awk -F: '{ print $1 }')
     TLDR_GIT_PATH="${TLDR_GIT_PATH%%'/.git/config'}"
     [ -n "${TLDR_GIT_PATH}" ] && cd "${TLDR_GIT_PATH}"
