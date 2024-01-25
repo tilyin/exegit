@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 current_dir=$(pwd)
+cd 
 
 if [ -n $(which tldr) ]; then
   echo "Update tldr..."
@@ -12,7 +13,7 @@ if [ -n $(which tldr) ]; then
     unset -v TLDR_CONFIG TLDR_DIR
   else
     echo "...tldr snap"
-    TLDR_GIT_PATH=$(grep -rnEI 'tldr-pages\/tldr.git' ${HOME}/ | grep -E '\.git\/config' | awk -F: '{ print $1 }')
+    TLDR_GIT_PATH=$(sudo grep -rnEI 'tldr-pages\/tldr.git' ${HOME}/ | grep -E '\.git\/config' | awk -F: '{ print $1 }')
     TLDR_GIT_PATH="${TLDR_GIT_PATH%%'/.git/config'}"
     [ -n "${TLDR_GIT_PATH}" ] && cd "${TLDR_GIT_PATH}"
     # tldr -u
