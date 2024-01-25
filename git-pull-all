@@ -11,14 +11,13 @@ if [ -n $(which tldr) ]; then
     TLDR_DIR="${TLDR_DIR%'/.git'}"
     dir_list="${dir_list} ${TLDR_DIR}"
     unset -v TLDR_CONFIG TLDR_DIR
+    echo && echo
   else
     echo "...tldr snap"
     TLDR_GIT_PATH=$(sudo grep -rnEI 'tldr-pages\/tldr.git' ${HOME}/ | grep -E '\.git\/config' | awk -F: '{ print $1 }')
     TLDR_GIT_PATH="${TLDR_GIT_PATH%%'/.git/config'}"
-    [ -n "${TLDR_GIT_PATH}" ] && cd "${TLDR_GIT_PATH}"
-    # tldr -u
-    git pull
-    cd ${HOME/git}
+    [ -n "${TLDR_GIT_PATH}" ] && cd "${TLDR_GIT_PATH}" && git pull || tldr -u
+    echo && echo  
   fi
 fi
 
