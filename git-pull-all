@@ -2,6 +2,8 @@
 current_dir=$(pwd)
 cd 
 
+TLDR_DIR=''
+
 if [ -n $(which tldr) ]; then
   echo "Update tldr..."
   TLDR_CONFIG=$(sudo grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }' | awk '!/git\// { print }')
@@ -9,7 +11,7 @@ if [ -n $(which tldr) ]; then
     echo "...tldr git added to list"
     TLDR_DIR=$(dirname "${TLDR_CONFIG}")
     TLDR_DIR="${TLDR_DIR%'/.git'}"
-    dir_list="${dir_list} ${TLDR_DIR}"
+#    dir_list="${dir_list} ${TLDR_DIR}"
     unset -v TLDR_CONFIG TLDR_DIR
     echo && echo
   else
@@ -24,6 +26,7 @@ fi
 cd $HOME/git
 echo "Preparing repository list..."
 dir_list=$(sudo find -H ./ -depth -type d -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }' | sort)
+dir_list="${dir_list} ${TLDR_DIR}"
 
 if [[ -d $HOME/Documents ]];then
   dir_list="$dir_list $HOME/Documents"
