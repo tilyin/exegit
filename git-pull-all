@@ -6,21 +6,22 @@ TLDR_DIR=''
 
 if [ -n $(which tldr) ]; then
   echo "Update tldr..."
-  TLDR_CONFIG=$(sudo grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }' | awk '!/git\// { print }')
-  if [ -n "${TLDR_CONFIG}" ]; then
-    echo "...tldr git added to list"
-    TLDR_DIR=$(dirname "${TLDR_CONFIG}")
-    TLDR_DIR="${TLDR_DIR%'/.git'}"
+  CDIR=$(pwd); for DIR in $(find -H ./ -type d -name tldr -ls); do if [ -d ${DIR}/.git ]; then cd ${DIR}; pwd; git pull; cd ${CDIR}; fi; done
+  #TLDR_CONFIG=$(sudo grep -rnEI 'tldr-pages\/tldr\.git' ~/ | grep 'url = ' | awk -F: '{ print $1 }' | awk '!/git\// { print }')
+  #if [ -n "${TLDR_CONFIG}" ]; then
+  #  echo "...tldr git added to list"
+  #  TLDR_DIR=$(dirname "${TLDR_CONFIG}")
+  #  TLDR_DIR="${TLDR_DIR%'/.git'}"
 #    dir_list="${dir_list} ${TLDR_DIR}"
-    unset -v TLDR_CONFIG TLDR_DIR
+  #  unset -v TLDR_CONFIG TLDR_DIR
     echo && echo
-  else
-    echo "...tldr snap"
-    TLDR_GIT_PATH=$(sudo grep -rnEI 'tldr-pages\/tldr.git' ${HOME}/ | grep -E '\.git\/config' | awk -F: '{ print $1 }')
-    TLDR_GIT_PATH="${TLDR_GIT_PATH%%'/.git/config'}"
-    [ -n "${TLDR_GIT_PATH}" ] && cd "${TLDR_GIT_PATH}" && git pull || tldr -u
-    echo && echo  
-  fi
+  #else
+  #  echo "...tldr snap"
+  #  TLDR_GIT_PATH=$(sudo grep -rnEI 'tldr-pages\/tldr.git' ${HOME}/ | grep -E '\.git\/config' | awk -F: '{ print $1 }')
+  #  TLDR_GIT_PATH="${TLDR_GIT_PATH%%'/.git/config'}"
+  #  [ -n "${TLDR_GIT_PATH}" ] && cd "${TLDR_GIT_PATH}" && git pull || tldr -u
+  #  echo && echo  
+  #fi
 fi
 
 cd $HOME/git
