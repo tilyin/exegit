@@ -2,29 +2,6 @@
 current_dir=$(pwd)
 cd 
 
-TLDR_DIR=''
-
-if [ -n $(which tldr) ]; then
-  echo "Update tldr..."
-
-  CDIR=$(pwd); 
-  for DIR in $(find -H ./ -type d -name tldr -ls); do 
-    if [ -d ${DIR}/.git ]; then 
-      cd ${DIR}; 
-      pwd; 
-      git pull; 
-      cd ${CDIR}; 
-    fi; 
-  done
-
-  for APP in $(snap list | awk '{ print $1 }'); do 
-    if [ $APP == 'tldr' ]; then 
-      echo '...tldr snap'
-      tldr -u
-    fi; 
-  done
-fi
-
 cd $HOME/git
 echo "Preparing repository list..."
 dir_list=$(sudo find -H ./ -depth -type d -name '.git' -ls | awk '{ print $11 }' | awk -F / '{ print $1"/"$2 }' | sort)
