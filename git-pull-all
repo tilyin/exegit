@@ -15,7 +15,8 @@ echo && echo
 echo 'Detect network location...'
 echo && echo
 
-IS_DEVOPS_PING="$(ping -c3 10.58.0.250 | awk '/ 0% packet loss/ { print }')"
+# IS_DEVOPS_PING="$(ping -c3 10.58.0.250 | awk '/ 0% packet loss/ { print }')"
+IS_DEVOPS_PING="Everything is Ok!"
 
 for dir_name in $dir_list; do
   cd $dir_name
