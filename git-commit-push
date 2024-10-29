@@ -31,9 +31,9 @@ done
 #   [[ -n $(sed -n '/10.58.0.250/p' .git/config) ]] && sed -i 's/10.58.0.250/95.165.133.121/g' .git/config
 # fi
 
-git add .
+# git add .
 echo
-git commit -m "$comments"
+git commit -a -m "$comments" --status
 echo
 git push -u origin master
 
