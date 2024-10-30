@@ -35,8 +35,7 @@ git add .
 echo
 git commit -a -m "$comments" --status
 echo
-BRANCH=$(git branch --list | grep '*' | awk -F" " '{ print $2 }')
-git push -u origin ${BRANCH}
+git push -u origin master
 
 if [[ $(git config --get remote.origin.url) == *"github"* ]]; then
   echo "Done: remote origin is on github.com"
