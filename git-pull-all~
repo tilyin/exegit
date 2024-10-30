@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 current_dir=$(pwd)
-cd
+cd 
 
 cd $HOME/git
 echo "Preparing repository list..."
@@ -25,7 +25,7 @@ for dir_name in $dir_list; do
 
   echo "Git reporitory set on: $(git config --get remote.origin.url)"
   # echo "Git reporitory set on: $(sed -E -n '/\surl = /p' .git/config)"
-
+  
   if [[ -n "${IS_DEVOPS_PING}" ]]; then
     [[ -n $(sed -n '/95.165.133.121/p' .git/config) ]] && sed -i 's/95.165.133.121/10.58.0.250/g' .git/config && echo "Git reporitory now on: $(sed -E -n '/\surl = /p' .git/config)"
   elif [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.59.0' ]]; then
@@ -35,7 +35,7 @@ for dir_name in $dir_list; do
     [[ -n $(sed -n '/10.58.0.250/p' .git/config) ]] && sed -i 's/10.58.0.250/95.165.133.121/g' .git/config && echo "Git reporitory now on: $(sed -E -n '/\surl = /p' .git/config)"
   fi
 
-  git pull --all
+  git pull
 
   if [[ "$dir_name" == "ssh" ]] && [ -f ~/git/ssh/ssh-update.sh ]; then
     . ~/git/ssh/ssh-update.sh
