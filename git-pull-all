@@ -26,6 +26,11 @@ for dir_name in $dir_list; do
   echo "Git reporitory set on: $(git config --get remote.origin.url)"
   # echo "Git reporitory set on: $(sed -E -n '/\surl = /p' .git/config)"
 
+  echo
+  echo 'Repository branches:'
+  git branch --all --list
+  echo
+
   if [[ -n "${IS_DEVOPS_PING}" ]]; then
     [[ -n $(sed -n '/95.165.133.121/p' .git/config) ]] && sed -i 's/95.165.133.121/10.58.0.250/g' .git/config && echo "Git reporitory now on: $(sed -E -n '/\surl = /p' .git/config)"
   elif [[ $(hostname -I | awk '{ print $1 }' | awk -F. '{ print $1"."$2"."$3}') == '10.59.0' ]]; then
