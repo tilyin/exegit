@@ -28,7 +28,7 @@ for dir_name in $dir_list; do
 
   echo
   echo 'Repository branches:'
-  git branch --all --list
+  git branch --list # --all
   echo
 
   if [[ -n "${IS_DEVOPS_PING}" ]]; then
