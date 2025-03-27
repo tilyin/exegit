@@ -25,7 +25,11 @@ for dir_name in $dir_list; do
 
   echo "Git reporitory set on: $(git config --get remote.origin.url)"
   # echo "Git reporitory set on: $(sed -E -n '/\surl = /p' .git/config)"
+<<<<<<< HEAD
   echo "On branch: $(git branch --list)" | tr -d '*' # --all
+=======
+  echo "On branch: $(git branch --list)" # --all
+>>>>>>> b73d0f0eb8e4af6515c064b400745d1d8801cc77
   echo
 
   if [[ -n "${IS_DEVOPS_PING}" ]]; then
