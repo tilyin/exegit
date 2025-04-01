@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+CURRENT_DIR=$(pwd)
+
+if [[ -n ${1} ]]; then
+  echo && echo
+  SHORT_REPO_NAME="${1}"
+  LOCAL_REPO_NAME="${HOME}/git/${1}"
+  echo "New local local repository name: ${LOCAL_REPO_NAME}"
+  REMOTE_REPO_NAME="/home/master/git/${1}.git";
+  echo "New remote repository name: ${REMOTE_REPO_NAME}"
+  echo && echo
+else
+  echo && echo
+  echo "no git repository name provided"
+  echo && echo
+  exit 1
+fi
+
+ssh -p 4961 master@217.163.23.239 "bash -s "<<EOF
+pwd;
+mkdir -p ${REMOTE_REPO_NAME};
+cd ${REMOTE_REPO_NAME};
+pwd;
+git init --bare;
+echo && echo
+
+ssh -p 4965 tim@95.165.133.121 'bash -s '<<GIT
+mkdir -p ~/git/${SHORT_REPO_NAME}.git
+cd ~/git/${SHORT_REPO_NAME}.git
+pwd
+git init --bare
+ls -lah
+GIT
+echo && echo
+
+sed 's/exegit/${SHORT_REPO_NAME}/' ../exegit.git/config | tee ./config
+
+cd
+EOF
+echo && echo
+
+git clone ssh://master@217.163.23.239:4961${REMOTE_REPO_NAME}
+cd ${LOCAL_REPO_NAME}
+pwd
+ls -lah ${LOCAL_REPO_NAME}
+echo && echo
+
+echo -e "Project: ${SHORT_REPO_NAME}\n" | tee ${LOCAL_REPO_NAME}/README.md
+ls -lah
+echo && echo
+
+git add . && git commit -m "initial commit"
+echo && echo
+
+git push -u origin master
+# git branch --set-upstream-to=origin/master master
+
+cd ${CURRENT_DIR}
