@@ -45,6 +45,8 @@ pwd
 ls -lah ${LOCAL_REPO_NAME}
 echo && echo
 
+git config --global fetch.prune true
+
 echo -e "Project: ${SHORT_REPO_NAME}\n" | tee ${LOCAL_REPO_NAME}/README.md
 ls -lah
 echo && echo
