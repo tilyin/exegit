@@ -25,6 +25,7 @@ for dir_name in $dir_list; do
 
   echo "Git reporitory set on: $(git config --get remote.origin.url)"
   # echo "Git reporitory set on: $(sed -E -n '/\surl = /p' .git/config)"
+  git fetch --prune
   echo "On branch: "
   git branch --list --all
   echo
