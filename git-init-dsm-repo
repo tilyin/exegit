@@ -16,7 +16,7 @@ else
   exit 1
 fi
 
-ssh -p 4961 master@217.163.23.239 "bash -s "<<EOF
+ssh -p 4961 master@ilyin.live "bash -s "<<EOF
 pwd;
 mkdir -p ${REMOTE_REPO_NAME};
 cd ${REMOTE_REPO_NAME};
@@ -39,7 +39,7 @@ cd
 EOF
 echo && echo
 
-git clone ssh://master@217.163.23.239:4961${REMOTE_REPO_NAME}
+git clone ssh://master@ilyin.live:4961${REMOTE_REPO_NAME}
 cd ${LOCAL_REPO_NAME}
 pwd
 ls -lah ${LOCAL_REPO_NAME}
