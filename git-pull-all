@@ -51,4 +51,4 @@ for dir_name in $dir_list; do
 done
 
 cd $current_dir
-
+echo $(date) | tee ~/timestamp-git-pull-all.log
