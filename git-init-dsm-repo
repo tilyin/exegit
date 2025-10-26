@@ -24,7 +24,7 @@ pwd;
 git init --bare;
 echo && echo
 
-ssh -p 4965 tim@95.165.133.121 'bash -s '<<GIT
+ssh -p 4965 tim@ilyin.id 'bash -s '<<GIT
 mkdir -p ~/git/${SHORT_REPO_NAME}.git
 cd ~/git/${SHORT_REPO_NAME}.git
 pwd
