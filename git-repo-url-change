@@ -16,7 +16,7 @@ for DIR in ${DIRS}; do
   echo
 
   echo ${DIR}
-  sed -i -e 's/4961\/home\/master\/git/4965\/var\/services\/homes\/tim\/git/' -e 's/ilyin.live/ilyin.tech/' -e 's/master/tim/' ${DIR}/.git/config
+  sed -i -e "s/${OLD_PATH}/${NEW_PATH}/" -e "s/${OLD_HOST}/${NEW_HOST}/" -e "s/${OLD_USER}/${NEW_USER}/" ${DIR}/.git/config
   echo
   
   cd ${DIR}
