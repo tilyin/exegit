@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+OLD_USER=master
+NEW_USER=tim
+OLD_HOST=ilyin.live
+NEW_HOST=ilyin.tech
+OLD_PATH="4961\/home\/master\/git"
+NEW_PATH="4965\/var\/services\/homes\/tim\/git"
+
+CURRENT=$(pwd)
+
+cd ~/git
+
+DIRS=".local_arch $(ls -d */)"
+
+for DIR in ${DIRS}; do
+  echo
+
+  echo ${DIR}
+  sed -i -e 's/4961\/home\/master\/git/4965\/var\/services\/homes\/tim\/git/' -e 's/ilyin.live/ilyin.tech/' -e 's/master/tim/' ${DIR}/.git/config
+  echo
+  
+  cd ${DIR}
+  BRANCH=$(git branch --all | awk '/^\*/{ print $2 }')
+  git branch --set-upstream-to=origin/${BRANCH} ${BRANCH}
+  git pull
+  cd ..
+
+  echo
+done
+echo
+
+cd ~/Documents
+sed -i -e 's/4961\/home\/master\/git/4965\/var\/services\/homes\/tim\/git/' -e 's/ilyin.live/ilyin.tech/' -e 's/master/tim/' .git/config
+BRANCH=$(git branch --all | awk '/^\*/{ print $2 }')
+git branch --set-upstream-to=origin/${BRANCH} ${BRANCH}
+git pull
+
+cd ${CURRENT}
