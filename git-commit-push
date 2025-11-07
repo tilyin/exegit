@@ -22,6 +22,9 @@ do
   cd ..
 done
 
+git pull
+echo && echo
+
 git add .
 echo
 git commit -a -m "$comments" --status
