@@ -6,7 +6,7 @@ else
   REPO_NAME="$1"
   echo "git clone ${REPO_NAME}"
   [[ -z $(echo "${REPO_NAME}" | awk '/\.git$/{ print }') ]] && REPO_NAME=${REPO_NAME}.git
-  git clone ssh://tim@ilyin.tech:4965/var/services/homes/tim/git/${REPO_NAME}
+  git clone ssh://git@ilyin.tech:4965/var/services/homes/git/${REPO_NAME}
 fi
 
 echo

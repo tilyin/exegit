@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 OLD_USER=master
-NEW_USER=tim
+NEW_USER=git
 OLD_HOST=ilyin.live
 NEW_HOST=ilyin.tech
 OLD_PATH="4961\/home\/master\/git"
-NEW_PATH="4965\/var\/services\/homes\/tim\/git"
+NEW_PATH="4965\/var\/services\/homes\/git"
 
 CURRENT=$(pwd)
 

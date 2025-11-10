@@ -6,7 +6,7 @@ if [[ -n ${1} ]]; then
   SHORT_REPO_NAME="${1}"
   LOCAL_REPO_NAME="${HOME}/git/${1}"
   echo "New local local repository name: ${LOCAL_REPO_NAME}"
-  REMOTE_REPO_NAME="/var/services/homes/tim/git/${1}.git";
+  REMOTE_REPO_NAME="/var/services/homes/git/${1}.git";
   echo "New remote repository name: ${REMOTE_REPO_NAME}"
   echo && echo
 else
@@ -16,7 +16,7 @@ else
   exit 1
 fi
 
-ssh -p 4965 tim@ilyin.tech "bash -s "<<EOF
+ssh -p 4965 git@ilyin.tech "bash -s "<<EOF
 pwd;
 mkdir -p ${REMOTE_REPO_NAME};
 cd ${REMOTE_REPO_NAME};
@@ -26,7 +26,7 @@ EOF
 echo && echo
 
 cd ~/git
-git clone ssh://tim@ilyin.tech:4965${REMOTE_REPO_NAME}
+git clone ssh://git@ilyin.tech:4965${REMOTE_REPO_NAME}
 cd ${LOCAL_REPO_NAME}
 pwd
 ls -lah ${LOCAL_REPO_NAME}
