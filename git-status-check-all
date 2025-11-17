@@ -12,10 +12,6 @@ do
   git_list="$git_list $git"
 done
 
-if [[ -d ${HOME}/Documents ]]; then
-  git_list="$git_list ${HOME}/Documents"
-fi
-
 echo && echo
 
 for dir_name in $git_list

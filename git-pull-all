@@ -7,10 +7,6 @@ echo "Preparing repository list..."
 dir_list=$(sudo find -H ./ -depth -type d -name '.git' -ls | awk '{ print $11 }' | awk -F/ '{ print $1"/"$2 }' | sort -u)
 dir_list="${dir_list} ${TLDR_DIR}"
 
-if [[ -d $HOME/Documents ]];then
-  dir_list="$dir_list $HOME/Documents"
-fi
-
 echo && echo
 echo 'Detect network location...'
 echo && echo

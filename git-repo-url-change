@@ -29,10 +29,4 @@ for DIR in ${DIRS}; do
 done
 echo
 
-cd ~/Documents
-sed -i -e 's/4961\/home\/master\/git/4965\/var\/services\/homes\/tim\/git/' -e 's/ilyin.live/ilyin.tech/' -e 's/master/tim/' .git/config
-BRANCH=$(git branch --all | awk '/^\*/{ print $2 }')
-git branch --set-upstream-to=origin/${BRANCH} ${BRANCH}
-git pull
-
 cd ${CURRENT}
