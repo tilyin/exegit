@@ -47,24 +47,20 @@ elif [[ -n "$(git config --get remote.origin.url)" ]]; then
   ssh -p ${GIT_PORT} ${GIT_USER}@${GIT_HOST} 'bash -s' <<EOF
   echo
   hostname
-  [[ -f "${GIT_PATH}/config" ]] && echo "File exists" || echo "File does not exist"
-  [[ -r "${GIT_PATH}/config" ]] && echo "File is readable" || echo "File is not readable"
   
-  echo "Testing sed in command substitution:"
-  sed -n '/\[remote \"origin"\]/,/url = / p' ${GIT_PATH}/config
-  echo "Exit code: \$?"
+  if [ -f "${GIT_PATH}/config" ] && [ -r "${GIT_PATH}/config" ] && [ -s "${GIT_PATH}/config" ]; then
+    echo "Testing sed in command substitution:"
+    CHECK_REMOTE_URL="\$(sed -n '/\[remote \"origin\"\]/,/url = / p' "${GIT_PATH}/config" 2>&1 | awk '/url = / { print  }')"
+    echo "Sed CHECK_REMOTE_URL: \$CHECK_REMOTE_URL"
+    echo "Exit code: \$?"
 
-  echo "Testing sed in command substitution:"
-  CHECK_REMOTE_URL="\$(sed -n '/\[remote \"origin\"\]/,/url = / p' "${GIT_PATH}/config" 2>&1 | awk '/url = / { print  }')"
-  echo "Sed CHECK_REMOTE_URL: \$CHECK_REMOTE_URL"
-  echo "Exit code: \$?"
-
-  if [ -f "${GIT_PATH}/config" ] && [ -n "${CHECK_REMOTE_URL}" ]; then
-    echo    
-    cd ${GIT_PATH}
-    pwd
-    echo "${GIT_USER}@${GIT_HOST}:${GIT_PORT}${GIT_PATH}$ git push"
-    git push
+    if [ -n "${CHECK_REMOTE_URL}" ]; then
+      echo    
+      cd ${GIT_PATH}
+      pwd
+      echo "${GIT_USER}@${GIT_HOST}:${GIT_PORT}${GIT_PATH}$ git push"
+      git push
+    fi
   fi
 EOF
 fi
