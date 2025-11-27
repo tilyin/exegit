@@ -1,29 +1,22 @@
 #!/usr/bin/env bash
-OLD_USER=master
-NEW_USER=git
-OLD_HOST=ilyin.live
-NEW_HOST=ilyin.tech
-OLD_PATH="4961\/home\/master\/git"
-NEW_PATH="4965\/var\/services\/homes\/git"
-
 CURRENT=$(pwd)
-
 cd ~/git
 
 DIRS=".local_arch $(ls -d */)"
+echo ${DIRS}
 
 for DIR in ${DIRS}; do
   echo
-
+  DIR=$(echo ${DIR} | sed 's:/*$::')
   echo ${DIR}
-  sed -i -e "s/${OLD_PATH}/${NEW_PATH}/" -e "s/${OLD_HOST}/${NEW_HOST}/" -e "s/${OLD_USER}/${NEW_USER}/" ${DIR}/.git/config
+  sed -i -e '/url = ssh/d' -e "/\[remote \"origin\"\]/ a \\\turl = ssh:\/\/git@10.59.0.6:4964\/home\/git\/repo\/${DIR}.git" ${DIR}/.git/config
   echo
   
   cd ${DIR}
   BRANCH=$(git branch --all | awk '/^\*/{ print $2 }')
   git branch --set-upstream-to=origin/${BRANCH} ${BRANCH}
   git pull
-  cd ..
+  cd ~/git
 
   echo
 done
