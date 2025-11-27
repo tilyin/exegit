@@ -54,7 +54,7 @@ elif [[ -n "$(git config --get remote.origin.url)" ]]; then
     echo "Sed CHECK_REMOTE_URL: \$CHECK_REMOTE_URL"
     echo "Exit code: \$?"
 
-    if [[ -n "${CHECK_REMOTE_URL}" ]]; then
+    if [[ -n "\${CHECK_REMOTE_URL}" ]]; then
       echo    
       cd ${GIT_PATH}
       pwd
