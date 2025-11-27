@@ -2,7 +2,9 @@
 CURRENT=$(pwd)
 cd ~/git
 
-DIRS=".local_arch $(ls -d */)"
+DIRS=""
+[[ -d .local_arch ]] && DIRS=".local_arch"
+DIRS="${DIRS} $(ls -d */)"
 echo ${DIRS}
 
 for DIR in ${DIRS}; do
