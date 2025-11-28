@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 current_dir=$(pwd)
-cd
+cd ~/git
 
-cd $HOME/git
 echo "Preparing repository list..."
-dir_list=$(sudo find -H ./ -depth -type d -name '.git' -ls | awk '{ print $11 }' | awk -F/ '{ print $1"/"$2 }' | sort -u)
+dir_list=$(sudo find -H ./ -depth -type d -name '.git' -ls | awk '{ print $NF }' | awk -F/ '{ print $1"/"$2 }' | sort -u)
 dir_list="${dir_list} ${TLDR_DIR}"
 
 echo && echo
