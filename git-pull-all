@@ -40,7 +40,7 @@ for dir_name in $dir_list; do
     . ~/git/ssh/ssh-update.sh
   fi
 
-  cd $HOME/git
+  cd ~/git
   echo -e "\033[00;32m_______________________________________________________________________________\033[00m"
   echo && echo
 done
