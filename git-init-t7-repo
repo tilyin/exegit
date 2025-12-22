@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+CURRENT_DIR=$(pwd)
+SHORT_REPO_NAME="${1%.git}"
+
+if [[ -z "${SHORT_REPO_NAME}" ]]; then
+  echo && echo
+  echo "no git repository name provided"
+  echo && echo
+  exit 1
+fi
+
+if [ -f "${HOME}/git/${SHORT_REPO_NAME}" ]; then
+  echo && echo
+  echo "git repository ${SHORT_REPO_NAME} already exists locally"
+  echo && echo
+  exit 1
+fi
+
+echo && echo
+LOCAL_REPO_NAME="${HOME}/git/${SHORT_REPO_NAME}"
+echo "New local local repository name: ${LOCAL_REPO_NAME}"
+REMOTE_REPO_NAME="/home/git/repo/${SHORT_REPO_NAME}.git";
+echo "New remote repository name: ${REMOTE_REPO_NAME}"
+echo && echo
+
+
+ssh -p 4964 git@ilyin.tech "bash -s "<<EOF
+pwd;
+mkdir -p ${REMOTE_REPO_NAME};
+cd ${REMOTE_REPO_NAME};
+pwd;
+git init --bare;
+EOF
+echo && echo
+
+cd ~/git
+git clone ssh://git@ilyin.tech:4964${REMOTE_REPO_NAME}
+cd ${LOCAL_REPO_NAME}
+pwd
+ls -lah ${LOCAL_REPO_NAME}
+echo && echo
+
+git config --global fetch.prune true
+
+echo -e "Project: ${SHORT_REPO_NAME}\n" | tee ${LOCAL_REPO_NAME}/README.md
+ls -lah
+echo && echo
+
+git add . && git commit -m "initial commit"
+echo && echo
+
+git push -u origin master
+# git branch --set-upstream-to=origin/master master
+
+cd ${CURRENT_DIR}
