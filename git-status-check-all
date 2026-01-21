@@ -1,22 +1,13 @@
 #!/usr/bin/env bash
 CURRENT=$(pwd)
-
-cd ${HOME}/git
-
-if [[ -d ~/git/.local_arch ]]; then
-  git_list=".local_arch"
-fi
-
-for git in $(ls -d */);
-do
-  git_list="$git_list $git"
-done
-
+echo
+echo "Checking git status for all repositories under ~/git"
+echo "-----------------------------------------------------"
 echo && echo
 
-for dir_name in $git_list
-do
-  cd $dir_name
+for GIT in $(find -H ~/git -type d -name '.git' -ls | awk '{ print $NF }'); do
+  DIR="${GIT%\/.git}"
+  cd ${DIR}
   echo -e "\033[01;34m$(pwd)\033[00m"
   echo -e "\033[00;32m--------------------------------------------------------------------------------\033[00m"
 
